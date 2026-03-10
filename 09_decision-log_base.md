@@ -200,7 +200,7 @@ This order reflects the intended scan flow from immediate health signal through 
 
 ### Status
 
-Accepted
+Replaced
 
 ### Supersedes
 
@@ -208,13 +208,13 @@ None
 
 ### Must remain true
 
-* the five sections must appear in this exact order in V1
-* no section may be removed or reordered without an explicit approved revision
-* future change requests must declare a structural revision mode to alter this order
+* this entry remains part of history only
+* future generation must not treat the old five-section structure as the active model
+* any use of this structure must be explicitly framed as historical V1
 
 ### Notes / validation
 
-Confirmed during Task 7 review. Captured in screen spec and masterplan.
+Replaced by DL-003 after review of the latest prototype and stable refinement pass.
 
 ---
 
@@ -224,25 +224,26 @@ DL-003
 
 ### Date
 
-2026-03-03
+2026-03-10
 
 ### Screen / Scope
 
-Project Overview / Information hierarchy
+Project Overview / Active page structure
 
 ### Decision
 
-The page uses a four-tier information hierarchy: Tier 1 Executive Status Summary, Tier 2 Main Health Domains, Tier 3 Supporting Drift Domains, Tier 4 Drill-down only.
+Replace the earlier five-section V1 structure with a three-layer active model: Executive Summary, optional AI Insight Layer, and unified Diagnostic + Drill-down.
 
 ### Reason
 
-The hierarchy reflects the user's primary scan flow and ensures the most important information is answered above the fold without requiring drill-down navigation.
+The latest prototype review showed the need for a faster scan model, less duplication, clearer AI placement, and stronger structural consistency across tools.
 
 ### Impact
 
-* defines what is primary, secondary, and drill-down only
-* prevents operational detail from surfacing inline on the overview page
-* supports fast project health assessment at a glance
+* simplifies the scan path
+* removes unnecessary section fragmentation
+* creates a cleaner generation target for Claude, Lovable, and Figma Make
+* improves consistency between factual summary, AI support, and diagnostics
 
 ### Status
 
@@ -250,17 +251,19 @@ Accepted
 
 ### Supersedes
 
-None
+DL-002
 
 ### Must remain true
 
-* Tier 1 content must be answerable above the fold
-* Tier 4 content must not appear inline on the overview page
-* the hierarchy must be preserved across all V1 revisions
+* the active model uses three primary layers inside the content canvas
+* Executive Summary appears first
+* AI Insight Layer appears second only when AI is enabled
+* Diagnostic + Drill-down appears below as the unified domain layer
+* the old Main Health, Supporting Drift, and separate Next Steps structure must not be treated as active unless explicitly requested as historical V1
 
 ### Notes / validation
 
-Confirmed during Task 7 review. Captured in screen spec and masterplan.
+Aligned to the active screen spec V2.
 
 ---
 
@@ -270,25 +273,25 @@ DL-004
 
 ### Date
 
-2026-03-03
+2026-03-10
 
 ### Screen / Scope
 
-Project Overview / Forecast visibility
+Project Overview / Executive Summary
 
 ### Decision
 
-Forecast visibility is a Tier 1 requirement. The user must be able to understand expected project finish timing from the Executive Status Summary without drilling down.
+Absorb the immediate-action answer into the Executive Summary and retire the separate standalone Next Steps section from the active page model.
 
 ### Reason
 
-The user's immediate need on opening the page includes understanding whether the project is on track to finish as expected. Deferring this to a drill-down view would fail the first 5-second scan requirement.
+The top of the page must answer in under 30 seconds whether the user is on track, whether anything is critical, and whether action is needed now.
 
 ### Impact
 
-* forecast visibility must be present in the Executive Status Summary
-* it must not be deferred to a drill-down view
-* all V1 generation must treat this as a required above-the-fold element
+* strengthens above-the-fold usefulness
+* reduces page fragmentation
+* keeps urgent action framing connected to overall status
 
 ### Status
 
@@ -296,16 +299,17 @@ Accepted
 
 ### Supersedes
 
-None
+DL-002
 
 ### Must remain true
 
-* forecast visibility is always present in the Executive Status Summary
-* it is never moved to a secondary or drill-down section without an explicit approved revision
+* Executive Summary must answer: Am I on track, Anything critical, Do I need to act now
+* if action is needed, the summary should present one primary next action and may include one or two secondary follow-ups
+* deeper fix destinations belong in the Diagnostic + Drill-down section, not in a standalone Next Steps block
 
 ### Notes / validation
 
-Confirmed during Task 7 review. Captured in screen spec and masterplan.
+This is an active screen rule, not a temporary demo-only treatment.
 
 ---
 
@@ -315,25 +319,25 @@ DL-005
 
 ### Date
 
-2026-03-03
+2026-03-10
 
 ### Screen / Scope
 
-Project Overview / AI Support Layer
+Project Overview / AI placement and containment
 
 ### Decision
 
-The AI Support Layer must sit after the Supporting Drift Domains section in the page order and must remain visually and functionally subordinate to core project facts at all AI maturity levels. The page must remain fully usable with AI Off.
+Show AI content only in a dedicated AI Insight Layer directly below the Executive Summary when AI is enabled.
 
 ### Reason
 
-AI should enhance the user's judgment without replacing or overpowering the baseline project control experience. The core facts must always be the primary signal.
+The baseline non-AI page must stay clear, trustworthy, and usable on its own. AI should act as an additive interpretation layer rather than blending into baseline facts or card content.
 
 ### Impact
 
-* AI layer placement is locked after Supporting Drift Domains
-* AI content must not dominate the visual hierarchy at any maturity level
-* the page must be complete and usable without any AI-generated content
+* preserves separation between factual project signals and AI interpretation
+* reduces duplication and visual noise
+* improves stability of cross-tool generation
 
 ### Status
 
@@ -341,17 +345,19 @@ Accepted
 
 ### Supersedes
 
-None
+DL-002
 
 ### Must remain true
 
-* AI Support Layer always appears after Supporting Drift Domains
-* AI never becomes the sole path to understanding project health
-* the page remains fully usable with AI Off
+* when AI is off, no AI section is shown
+* when AI is on, the AI Insight Layer appears directly under the Executive Summary
+* no AI content appears inside domain cards
+* no AI explanation is embedded into baseline Executive Summary factual content
+* the baseline page remains fully usable with AI off
 
 ### Notes / validation
 
-Confirmed during Task 7 review. Captured in screen spec.
+This replaces the older V1 placement where AI sat after supporting drift.
 
 ---
 
@@ -361,25 +367,25 @@ DL-006
 
 ### Date
 
-2026-03-03
+2026-03-10
 
 ### Screen / Scope
 
-Project Overview / AI maturity levels
+Project Overview / AI interaction
 
 ### Decision
 
-The page supports five AI states: AI Off, Level 1 Descriptive, Level 2 Diagnostic, Level 3 Predictive, Level 4 Agentic. Each level must feel meaningfully different in purpose and value.
+The AI Insight Layer is interactive and updates in place based on AI On/Off state and the selected maturity level.
 
 ### Reason
 
-The AI maturity model is the core progression framework for this experience. Each level must add distinct value so users understand what they gain as AI support increases.
+Different maturity levels must feel meaningfully different without restructuring the whole page or showing multiple AI states at once.
 
 ### Impact
 
-* all five states must be supported in the screen model
-* each level has a distinct purpose: what, why, prediction, recommended action
-* no two levels should feel equivalent in what they offer the user
+* preserves a stable page frame while allowing interactive AI behavior
+* reduces ambiguous generation of AI controls across tools
+* keeps baseline sections structurally unchanged when AI state changes
 
 ### Status
 
@@ -391,12 +397,15 @@ None
 
 ### Must remain true
 
-* all five AI states remain supported
-* the level definitions must not be merged or collapsed without an explicit approved revision
+* the AI level selector is visible only when AI is on
+* only one AI maturity state is shown at a time
+* changing maturity updates the same AI container in place
+* changing AI state or maturity must not convert baseline sections into AI variants
+* AI interaction behavior belongs to the screen contract even if control styling remains open
 
 ### Notes / validation
 
-Confirmed during Task 7 review. Captured in screen spec and masterplan.
+Visual control choice can remain flexible; the behavior contract is fixed.
 
 ---
 
@@ -406,25 +415,25 @@ DL-007
 
 ### Date
 
-2026-03-03
+2026-03-10
 
 ### Screen / Scope
 
-Project Overview / Next Steps and Drill-Down Actions (Zone E)
+Project Overview / AI maturity behavior
 
 ### Decision
 
-Within the Next Steps and Drill-Down Actions section, attention-flagged domains must appear first. Entry points for domains with no active flags remain present but should be visually de-emphasised.
+Use one shared AI container across maturity levels, with distinct content behavior by level: Descriptive, Diagnostic, Predictive, and Agentic.
 
 ### Reason
 
-Presenting all drill-down paths at equal visual weight forces the user to scan the full list before identifying where action is needed. Prioritising flagged domains reduces cognitive load and supports faster decision-making.
+Cross-tool generation requires a stable behavior contract so each maturity level does not collapse into the same content shape.
 
 ### Impact
 
-* Zone E must not present all entry points at equal visual weight
-* flagged domains always appear before unflagged ones in this section
-* unflagged entry points remain accessible but are not given equal prominence
+* increases differentiation across maturity levels
+* reduces repeated or generic AI output
+* protects the intended AI maturity model in prototype generation
 
 ### Status
 
@@ -436,13 +445,15 @@ None
 
 ### Must remain true
 
-* attention-flagged domains appear first in Zone E at all times
-* unflagged domains remain present and reachable but visually subordinate
-* this ordering rule applies to V1 and carries forward unless explicitly revised
+* Level 1 focuses on plain-language description of visible status
+* Level 2 focuses on likely drivers and causal interpretation
+* Level 3 focuses on likely future drift, slippage, or emerging risk
+* Level 4 focuses on next best action, intervention options, simulation, or recommended-response framing while keeping the human in control
+* AI behavior should differ by purpose, not just by wording tone
 
 ### Notes / validation
 
-Confirmed during Task 7 review. Captured in screen spec.
+The same visual container may be reused across levels; the content behavior must change.
 
 ---
 
@@ -452,25 +463,25 @@ DL-008
 
 ### Date
 
-2026-03-03
+2026-03-10
 
 ### Screen / Scope
 
-Project Overview / Stakeholder communication — V1 scope
+Project Overview / Diagnostic + Drill-down structure
 
 ### Decision
 
-In V1, stakeholder communication is not given a dedicated visibility block or direct trigger on the Project Overview page. The need for stakeholder communication is inferred by the user from signals visible across cost, schedule, scope, resources, risks, issues, dependencies, and changes.
+Merge Main Health Domains and Supporting Drift Domains into one unified Diagnostic + Drill-down section.
 
 ### Reason
 
-A dedicated stakeholder communication block was not justified for V1 given the available signals. The existing information backbone is sufficient for the user to infer when communication is needed.
+The latest review favored a single evidence layer that explains severity, cause, source, and path to fix without repeating the executive summary.
 
 ### Impact
 
-* no dedicated stakeholder communication card, section, or trigger in V1
-* the decision to communicate with stakeholders remains with the user based on visible signals
-* this may be revisited in a later iteration if a dedicated signal is justified
+* simplifies the middle of the page
+* improves scan-to-investigation flow
+* reduces artificial separation between control and drift evidence
 
 ### Status
 
@@ -478,16 +489,17 @@ Accepted
 
 ### Supersedes
 
-None
+DL-002
 
 ### Must remain true
 
-* V1 must not introduce a dedicated stakeholder communication block without an explicit approved revision
-* the inference model remains in place for V1
+* the active page uses one unified diagnostic domain section
+* the section must help answer: what is driving the issue, how serious is it, where is it coming from, where do I fix it, what must be updated
+* deeper operational detail is still reached by navigation rather than fully exposed inline
 
 ### Notes / validation
 
-Confirmed during Task 7 review. Captured in masterplan.
+The section keeps both control and drift visibility but in one structured layer.
 
 ---
 
@@ -497,25 +509,25 @@ DL-009
 
 ### Date
 
-2026-03-03
+2026-03-10
 
 ### Screen / Scope
 
-Project Overview / Shell and content canvas boundary
+Project Overview / Diagnostic domain visibility
 
 ### Decision
 
-All Project Overview page content must be designed inside the content canvas only. The left navigation shell and top product area are locked shell elements and must not be redesigned, restyled, or restructured as part of this screen.
+Always show the four core control domains first, and conditionally show remaining drift domains only when they are problematic or newly recovered, with a Show all domains reveal option.
 
 ### Reason
 
-The shell is part of the existing Altus product experience and must remain visually and structurally consistent across pages. The Project Overview is an extension of the existing product, not a standalone application.
+This preserves a stable backbone while reducing noise and allowing the page to focus on what currently matters.
 
 ### Impact
 
-* page generation and revision work is scoped to the content canvas only
-* the left navigation and top product area are treated as fixed constraints
-* no initiative-specific work may move shell-level controls into the page body
+* keeps essential control coverage visible at all times
+* reduces clutter from healthy secondary domains
+* supports both problem and recovery storytelling
 
 ### Status
 
@@ -527,33 +539,154 @@ None
 
 ### Must remain true
 
-* the left navigation shell remains outside the editable page area
-* the top product area remains outside the editable page area
-* all V1 generation and future revisions must respect this boundary
-* this constraint applies unless explicitly overridden by a product-level shell redesign decision
+* Cost, Schedule, Scope, and Resources are always visible in the diagnostic layer
+* Risks, Issues, Dependencies, and Changes are conditionally shown when problematic or newly green since the last review
+* the interface may provide a Show all domains option to reveal the full set
+* healthy secondary domains should not dominate the default view
 
 ### Notes / validation
 
-Confirmed as an applied decision for the Project Overview screen. Consistent with the shell preservation rules in `06_product-shell_base.md`.
+Supports the demo need to show both healthy and at-risk scenarios without changing the page model.
 
 ---
 
-## Working rules for the team
+### ID
 
-* Only log decisions that are actually accepted.
-* Do not log every idea or suggestion.
-* When a major design change is approved, add a new entry rather than rewriting history.
-* If a new decision replaces an old one, mark the old one as **Replaced** and reference the new ID.
-* Review this log before major revisions to avoid undoing stable choices.
+DL-010
+
+### Date
+
+2026-03-10
+
+### Screen / Scope
+
+Project Overview / Diagnostic card contract
+
+### Decision
+
+Use a compact card contract in the Diagnostic + Drill-down section: title, RAG status dot, trend cue, top three signals, and expand/collapse affordance.
+
+### Reason
+
+The cards must support fast scan first, then progressive reveal, while staying consistent across domains and tools.
+
+### Impact
+
+* improves scanability
+* standardizes domain-card generation
+* supports progressive disclosure without overloading the overview
+
+### Status
+
+Accepted
+
+### Supersedes
+
+None
+
+### Must remain true
+
+* each diagnostic card shows a title
+* each title includes a small RAG color status cue for current domain state
+* each card includes a trend cue beside the title
+* each card shows the top three most relevant signals in collapsed state
+* cards should support a consistent expand/collapse pattern
+
+### Notes / validation
+
+Trend states may include worsening, unchanged, improving, and recovered.
 
 ---
 
-## Recommended usage in workflow
+### ID
 
-1. Generate or revise a screen.
-2. Review what was intentionally decided.
-3. Add accepted decisions to this log.
-4. Use this log as an input for future iterations.
-5. Check new change requests against this log before editing.
+DL-011
 
-This file becomes the persistent memory for design intent outside the chat thread.
+### Date
+
+2026-03-10
+
+### Screen / Scope
+
+Project Overview / Diagnostic card interactivity
+
+### Decision
+
+Diagnostic cards are collapsed by default and can be expanded to reveal a limited set of supporting details and deep links.
+
+### Reason
+
+The overview must remain high-level by default while still allowing targeted investigation and navigation to fix areas.
+
+### Impact
+
+* protects overview simplicity
+* supports interactive drill-down behavior
+* avoids turning the page into a dense workspace
+
+### Status
+
+Accepted
+
+### Supersedes
+
+None
+
+### Must remain true
+
+* cards are collapsed by default
+* expanded state reveals approximately two to four extra diagnostic details
+* expanded state may show one to three drill-down destinations where the user can investigate or fix the issue
+* expanded state may indicate what needs updating at a high level
+* expansion must not expose full operational detail inline
+
+### Notes / validation
+
+Possible destinations may include multiple targets such as schedule view and milestone view.
+
+---
+
+### ID
+
+DL-012
+
+### Date
+
+2026-03-10
+
+### Screen / Scope
+
+Project Overview / Information separation
+
+### Decision
+
+Enforce a hard separation between Executive Summary, AI Insight Layer, and Diagnostic + Drill-down so the same content is not redundantly repeated across layers.
+
+### Reason
+
+Prototype review showed a need to reduce duplication and make each layer answer a different type of question.
+
+### Impact
+
+* improves clarity of purpose by section
+* reduces repetitive content
+* makes cross-tool generation easier to validate
+
+### Status
+
+Accepted
+
+### Supersedes
+
+None
+
+### Must remain true
+
+* Executive Summary focuses on overall state, criticality, and immediate-action signal
+* AI Insight Layer focuses on AI-specific interpretation according to the active maturity level
+* Diagnostic + Drill-down focuses on evidence, severity, source, cause, and path to fix
+* the same KPI or fact should not be repeated across layers unless needed for comprehension
+
+### Notes / validation
+
+This is a stable UX rule and should be enforced during generation and review.
