@@ -37,6 +37,7 @@ This file is not initiative-specific. It should work alongside the active initia
 - Do not copy full sections from one file into another unless the content is intentionally repeated for clarity or required for execution.
 - Prefer referencing the role of another file over repeating long content that already exists elsewhere.
 - When adding new information, place it in the file where it logically belongs instead of forcing it into the current file.
+- Demo/test scenario files may be used as companion inputs for prototype generation, evaluation, and cross-tool comparison. Treat them as support files for sample states, testing, and comparison only; they must not replace or override initiative truth files such as the active masterplan, screen spec, or decision log.
 
 ## Output-behavior rules
 - Work in small, reviewable steps instead of trying to solve everything at once.
