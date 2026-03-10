@@ -1,4 +1,4 @@
-# Screen Spec - Project Overview (V2 Contract)
+# Screen Spec - Project Overview (V3 Contract)
 
 ## Purpose
 
@@ -152,6 +152,23 @@ This section should answer:
 * Do I need to act now?
 
 This section may include a concise summary pattern, a status band, or a compact health overview, but it must stay calm and not dominate the full page.
+
+### Executive Summary layout
+
+The Executive Summary should be arranged as two coordinated sides within the same layer.
+
+* The left side answers the three primary user questions:
+  * Am I on track?
+  * Anything critical?
+  * Do I need to act now?
+
+* The right side shows compact forward-looking summary signals that support those answers, such as:
+  * forecast finish
+  * forecast cost
+  * and other equivalent forecast-level summary measures when relevant
+
+The left side should lead the decision-making scan.
+The right side should provide compact forecast context without turning into a detailed diagnostic area.
 
 ### Executive Summary action rule
 
@@ -312,6 +329,28 @@ These domains should be shown when:
 
 A **Show all domains** control should allow the user to reveal the full set when needed.
 
+### Diagnostic + Drill-down layout
+
+The Diagnostic + Drill-down section should use a consistent card pattern across all domains.
+
+* The first row should always show the four core control domains:
+  * Schedule
+  * Scope
+  * Cost
+  * Resources
+
+* Additional domains should appear underneath using the same card styling and interaction model.
+
+Additional domains may include:
+
+* Risks
+* Issues
+* Dependencies
+* Changes
+* other relevant drift domains
+
+Conditional domain visibility rules still apply, but when additional domains are shown they should appear beneath the core row rather than replacing it.
+
 ### Diagnostic non-duplication rule
 
 The Diagnostic + Drill-down section must not duplicate the Executive Summary.
@@ -457,9 +496,12 @@ Unless explicitly changed by a later approved revision, AI must preserve these c
 
 * the page remains a high-level overview, not a detailed workspace
 * Executive Summary remains the top factual assessment layer
+* the Executive Summary uses a two-sided structure with the three key questions leading on one side and forecast-level context on the other
 * the AI layer appears only when AI is on and sits below the Executive Summary
 * AI content remains contained to the AI layer only
 * the Diagnostic + Drill-down section remains unified rather than split into separate main-health and supporting-drift sections
+* the first row of the Diagnostic + Drill-down section remains the four core domains
+* additional domains, when shown, appear underneath using the same card pattern
 * the four core domains remain always visible
 * conditional drift domains remain filtered by issue or recovery state unless the user reveals all domains
 * the page must include a clear path from signal to drill-down destination
@@ -547,8 +589,11 @@ The current screen contract is successful if a reviewer can confirm that:
 * the screen feels native to the existing product
 * the first 30-second questions are answerable quickly
 * the Executive Summary provides a clear immediate-action signal
+* the Executive Summary uses a two-sided scan pattern with decision answers leading and forecast context supporting
 * AI appears only when enabled and updates correctly by maturity level
 * diagnostic cards are easy to scan in collapsed mode
+* the first row consistently anchors the four core domains
+* additional domains, when shown, follow the same card pattern underneath
 * expanded cards provide useful additional context without becoming dense
 * the page supports both healthy and at-risk scenarios
 * the page feels structured, calm, and trustworthy
