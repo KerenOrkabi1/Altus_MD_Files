@@ -690,3 +690,97 @@ None
 ### Notes / validation
 
 This is a stable UX rule and should be enforced during generation and review.
+
+---
+
+### ID
+
+DL-013
+
+### Date
+
+2026-03-10
+
+### Screen / Scope
+
+Project Overview / Executive Summary layout
+
+### Decision
+
+Use a two-sided Executive Summary layout: decision-oriented summary on the left and compact forecast context on the right.
+
+### Reason
+
+The top layer needs to support a very fast scan. Separating immediate decision answers from forecast context makes it easier for the user to understand status first and supporting outlook second.
+
+### Impact
+
+* improves first-glance clarity
+* creates a more stable summary layout across tools
+* prevents forecast details from diluting the immediate decision signal
+
+### Status
+
+Accepted
+
+### Supersedes
+
+None
+
+### Must remain true
+
+* the left side answers: Am I on track, Anything critical, Do I need to act now
+* the right side contains compact forecast-level context such as forecast finish, forecast cost, or equivalent forward-looking summary measures
+* the left side leads the scan and action decision
+* the right side supports the summary without turning into a diagnostic section
+
+### Notes / validation
+
+Aligned to the active screen spec V3.
+
+---
+
+### ID
+
+DL-014
+
+### Date
+
+2026-03-10
+
+### Screen / Scope
+
+Project Overview / Diagnostic layout
+
+### Decision
+
+Anchor the Diagnostic + Drill-down section with a first row of the four core domains, then place remaining domains underneath using the same card styling and interaction pattern.
+
+### Reason
+
+The user needs a stable domain backbone for scanning. Fixing the first row to Schedule, Scope, Cost, and Resources improves consistency while allowing additional domains to appear beneath without changing the model.
+
+### Impact
+
+* strengthens layout consistency across tools
+* preserves the core-control scan pattern
+* keeps additional domains visually aligned with the same card contract
+
+### Status
+
+Accepted
+
+### Supersedes
+
+None
+
+### Must remain true
+
+* the first diagnostic row contains Schedule, Scope, Cost, and Resources
+* additional domains such as Risks, Issues, Dependencies, and Changes appear underneath when shown
+* additional domains use the same styling, card contract, and expand/collapse behavior as the core row
+* secondary domains do not replace or reorder the core row by default
+
+### Notes / validation
+
+Aligned to the active screen spec V3.
