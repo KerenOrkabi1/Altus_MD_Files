@@ -483,6 +483,17 @@ When generating or revising this screen, AI must not:
 
 For testing and prototype comparison, the screen should work for at least these conditions:
 
+### Demo-state behavior
+
+Healthy, At-risk, and Recovered states are alternate sample states for the same Project Overview design.
+
+They may change content, statuses, trends, and action-needed signals, but must not change the page structure.
+
+AI controls remain separate from demo-state variation:
+- AI On / Off controls whether the AI Insight Layer is shown
+- AI maturity controls the type of AI content shown
+- project-state variation controls the example data only
+
 ### Scenario A — Healthy / stable project
 
 The page should support a project that is broadly on track.
