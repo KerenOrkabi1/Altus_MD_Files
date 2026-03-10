@@ -1,18 +1,20 @@
-# Screen Spec - Project Overview (V1 Contract)
+# Screen Spec - Project Overview (V2 Contract)
 
 ## Purpose
 
-This file defines the first-version screen contract for the Project Overview experience.
+This file defines the active screen contract for the Project Overview experience.
 
-This is the screen-level specification used to generate the first controlled version of the page. It defines what must be true when version 1 is created, even if some detail remains intentionally open for refinement.
+It is the screen-level specification used to generate and refine the Project Overview page with reduced design drift across tools. It defines what must remain true in the current approved screen model, even if some visual detail remains open for later refinement.
 
 This file should work with:
 
-* `masterplan_project_overview.md`
-* `user-journey_project_overview.md`
-* `design-guidelines_base.md`
-* `rules_base.md`
-* `product-shell_base.md`
+* `01_masterplan_project_overview.md`
+* `02_user-journey_project_overview.md`
+* `03_design-guidelines_base.md`
+* `04_rules_base.md`
+* `06_product-shell_base.md`
+* `09_decision-log_base.md`
+* `10_fluent-ui_base.md`
 
 ## Screen identity
 
@@ -28,13 +30,17 @@ This screen must help the user quickly determine:
 * Am I on track?
 * Is anything critical?
 * Do I need to act now?
-* Where should I focus first?
+* What is driving the issue?
+* How serious is it?
+* Where is the problem coming from?
+* Where do I fix it?
+* What must be updated?
 
 The page should feel calm, high-signal, and decision-support oriented.
 
 ## Host layout dependency
 
-This screen must be generated inside the host product frame defined in `product-shell_base.md`.
+This screen must be generated inside the host product frame defined in `06_product-shell_base.md`.
 
 That means:
 
@@ -44,65 +50,67 @@ That means:
 
 The shell is not part of the editable page body for this screen.
 
-## V1 design principle
+## Active design principle
 
-Version 1 should optimize for:
+The current screen model should optimize for:
 
 * fast scanability
 * stable information hierarchy
 * confidence in project control
 * clear drill-down paths
+* progressive reveal rather than dense inline detail
 * subtle AI augmentation without overpowering the baseline experience
 
-Version 1 should not attempt to solve every detailed workflow on this page.
+This page should remain a high-level overview, not a deep operational workspace.
 
 ## Required outcome
 
-The first generated version must:
+The generated version must:
 
 * remain high-level
 * support fast project health assessment
 * surface attention areas clearly
 * preserve a clear separation between baseline project facts and AI support
 * provide enough visibility to decide whether further investigation or action is needed
+* support both stable and at-risk project states without changing the page model
 
 ## Required information backbone
 
-The screen must visibly cover the minimum backbone defined by the project direction:
+The screen must visibly cover the minimum backbone defined by the project direction.
 
-### Main health domains
+### Core domains
 
 * Cost
 * Schedule
 * Scope
 * Resources
 
-### Supporting drift domains
+### Drift domains
 
 * Risks
 * Issues
 * Dependencies
 * Changes
 
-These items must be represented in the first version, either as direct sections, summary cards, grouped modules, or clearly reachable drill-down entry points.
+These items must be represented in the experience either as visible cards in the Diagnostic + Drill-down section or through an explicit reveal pattern such as **Show all domains**.
 
 ## Primary hierarchy
 
-The screen uses a four-tier information hierarchy:
+The screen uses a three-part hierarchy plus drill-down behavior:
 
-* **Tier 1 — Executive Status Summary**
-  Overall project health signal and forecast visibility. Must be answerable above the fold without scrolling.
+* **Layer 1 — Executive Summary**  
+  The fastest factual assessment layer. Must answer the top questions in under 30 seconds without requiring drill-down.
 
-* **Tier 2 — Main Health Domains**
-  Cost, Schedule, Scope, Resources. The primary decision-support view.
+* **Layer 2 — AI Insight Layer (optional)**  
+  Visible only when AI is enabled. Sits directly below the Executive Summary. Provides AI-specific interpretation based on the selected maturity level.
 
-* **Tier 3 — Supporting Drift Domains**
-  Risks, Issues, Dependencies, Changes. Explains where instability may be building.
+* **Layer 3 — Diagnostic + Drill-down**  
+  A unified domain section that helps the user understand severity, source, cause, and path to fix.
 
-* **Tier 4 — Drill-down only**
-  Operational detail is not surfaced inline on the overview page. It is accessible only through drill-down navigation.
+* **Drill-down destination**  
+  Deeper operational detail is reached by navigation from the overview rather than being fully exposed inline.
 
-This hierarchy must be preserved across all V1 revisions unless explicitly replaced by a newer accepted decision.
+This hierarchy replaces the earlier split between Main Health Domains, Supporting Drift Domains, AI Support Layer, and a separate Next Steps section.
 
 ## Above-the-fold expectation
 
@@ -117,134 +125,319 @@ This area must include:
 * the overall project health signal
 * forecast visibility — the user must be able to understand expected project finish timing from the top-level experience without drilling down
 * any immediately critical flags
+* a clear immediate-action signal when action is needed
 
-Forecast visibility is a Tier 1 requirement. It must be present in the Executive Status Summary, not deferred to a drill-down view.
+Forecast visibility is a top-layer requirement. It must be present in the Executive Summary, not deferred to a drill-down view.
 
-## Required screen sections for V1
+## Required screen sections
 
-The first version should include the following page sections inside the content canvas.
+The active page model should include the following sections inside the content canvas.
 
-### 1. Executive status summary
+### 1. Executive Summary
 
-A top summary area that helps the user understand the current overall state.
+A top summary area that helps the user understand the current overall state in under 30 seconds.
 
-This section should:
+This section must:
 
 * summarize the project status at a glance
 * signal whether the project appears stable or drifting
 * help the user quickly judge if intervention may be needed
 * include forecast visibility so the user can understand expected project finish timing from the top-level experience
+* include the immediate-action answer to **Do I need to act now?**
 
-This may include a concise summary pattern, a status band, or a compact health overview, but it must stay calm and not dominate the full page.
+This section should answer:
 
-### 2. Main health section
+* Am I on track?
+* Anything critical?
+* Do I need to act now?
 
-A primary section for the core control domains:
+This section may include a concise summary pattern, a status band, or a compact health overview, but it must stay calm and not dominate the full page.
+
+### Executive Summary action rule
+
+A separate standalone **Next Steps** section is no longer required in the active model.
+
+Instead:
+
+* the Executive Summary should state whether immediate action is required
+* if action is required, it should present **one primary next action** and may include **one or two secondary follow-ups**
+* deeper fix destinations belong in the Diagnostic + Drill-down section, not as a standalone action block
+
+### 2. AI Insight Layer
+
+A dedicated AI section that appears directly below the Executive Summary only when AI is enabled.
+
+This section must:
+
+* sit on top of the same project control model, not replace it
+* remain visually and functionally subordinate to baseline project facts
+* use the same container area across all AI maturity levels
+* update in place when the user changes the active AI maturity level
+* keep AI-generated content contained to this section only
+
+When AI is off:
+
+* no AI section is shown
+* no placeholder AI content is shown in its place
+* the AI level selector is not shown
+
+When AI is on:
+
+* the AI section becomes visible directly under the Executive Summary
+* the AI level selector becomes visible
+* only one maturity view is shown at a time
+* changing the maturity level updates the AI content in place
+* switching maturity levels must not restructure or replace the baseline non-AI sections
+
+### AI containment rule
+
+AI-generated content must remain contained to the AI Insight Layer.
+
+That means:
+
+* no AI summary inside domain cards
+* no AI explanation embedded inside Executive Summary factual content
+* no AI-generated card-level commentary in the Diagnostic + Drill-down section
+
+The baseline page must remain fully usable with AI off.
+
+### AI maturity behavior in the screen
+
+The page must support the following AI maturity states:
+
+* **AI Off**  
+  No AI-generated content is shown on the page. The user relies entirely on direct project facts and status signals.
+
+* **Level 1 — Descriptive**  
+  AI summarizes the current project state in plain language. It describes what is visible without interpretation beyond the data.
+
+  This level should:
+  * highlight the most important visible signals
+  * restate the current state in simpler language
+  * avoid causal reasoning
+  * avoid predictive language
+  * avoid advanced recommendations beyond what is already obvious from visible facts
+
+* **Level 2 — Diagnostic**  
+  AI explains why something may be off track by connecting signals across cost, schedule, scope, resources, risks, issues, dependencies, and changes.
+
+  This level should:
+  * identify likely drivers behind the current status
+  * connect signals across multiple domains where useful
+  * explain where instability is likely coming from
+  * rank or prioritize likely causes where possible
+  * avoid future simulation as the primary behavior
+
+* **Level 3 — Predictive**  
+  AI highlights likely future drift, likely next slippages, and emerging risks based on patterns and recent signals.
+
+  This level should:
+  * highlight what may worsen next if nothing changes
+  * surface likely future drift or slip patterns
+  * use probability or confidence language where appropriate
+  * remain insight-oriented rather than autonomous
+
+* **Level 4 — Agentic**  
+  AI suggests the next best action and may help prepare follow-up steps, interventions, or response paths, while keeping the human in control.
+
+  This level should:
+  * recommend the next best action
+  * suggest intervention options or response paths
+  * identify who or what may need follow-up
+  * support simulation, comparison, or recommended-action framing where useful
+  * keep the human as the decision-maker
+  * avoid presenting autonomous action as if it has already happened
+
+### AI interaction rule
+
+The AI layer is interactive.
+
+It must support:
+
+* AI On / Off state
+* in-place switching between supported AI maturity levels when AI is enabled
+* clear selected-state treatment for the active maturity level
+* one maturity state visible at a time
+
+The exact control pattern may vary by implementation or prototype, but the behavior contract must remain stable.
+
+## 3. Diagnostic + Drill-down
+
+A unified domain section that helps the user understand what is wrong, how serious it is, where it is coming from, and where to go fix it.
+
+This section must:
+
+* provide the main diagnostic view of the project
+* avoid duplicating the Executive Summary
+* support fast scan in collapsed mode
+* support deeper inspection through expansion and drill-down
+* provide a clear path from signal to destination
+
+This section should answer:
+
+* What is driving the issue?
+* How serious is it?
+* Where is the problem coming from?
+* Where do I fix it?
+* What must be updated?
+
+### Diagnostic section composition
+
+The section should use one unified domain model with two visibility tiers.
+
+#### Always-visible core domains
+
+The following four domains must always be shown:
 
 * Cost
 * Schedule
 * Scope
 * Resources
 
-This section should:
+These domains should appear first in the section.
 
-* provide the first detailed project control view
-* make it easy to scan across the four core dimensions
-* support direct comparison of where the project is healthy versus at risk
+#### Conditional drift domains
 
-### 3. Supporting drift section
-
-A secondary but still prominent section covering:
+The following domains are conditionally visible:
 
 * Risks
 * Issues
 * Dependencies
 * Changes
 
-This section should:
+These domains should be shown when:
 
-* help explain where project drift may be building
-* make attention areas visible without forcing deep investigation immediately
-* support fast movement to the right detailed area when needed
+* they currently have a meaningful issue or flagged condition
+* or they have turned green since the last review and should be surfaced as recovered/improved
 
-### 4. AI support section
+A **Show all domains** control should allow the user to reveal the full set when needed.
 
-A dedicated area for AI assistance when AI is enabled.
+### Diagnostic non-duplication rule
 
-This section should:
+The Diagnostic + Drill-down section must not duplicate the Executive Summary.
 
-* sit on top of the same project control model, not replace it
-* remain visually subordinate to the main project state
-* adapt based on AI maturity level
-* distinguish AI-added insight clearly enough for user trust
+That means:
 
-### 5. Next-step and drill-down actions
+* Executive Summary = top-level status, criticality, and immediate action signal
+* Diagnostic cards = evidence, severity, source, cause, and fix path
+* the same KPI or sentence should not be repeated across both sections unless needed for comprehension
 
-A clear set of entry points that helps the user move from insight to action.
+## Diagnostic card contract
 
-This section should support actions such as:
+Each visible domain should use a compact card pattern.
 
-* open the relevant detailed area
-* investigate a flagged issue
-* follow up with an owner
-* escalate when needed
-* move into deeper project management views
+### Collapsed state
 
-### Zone E ordering rule
+Each collapsed card must show:
 
-Within the Next Steps and Drill-Down Actions section, attention-flagged domains must appear first.
+* domain title
+* a small RAG status dot beside the title representing the current domain status
+* a trend cue beside or near the title
+* the top 3 signals for that domain
+* an expand affordance
 
-Entry points for domains with no active flags remain present but should be visually de-emphasised.
+The collapsed state must support fast scan without requiring expansion.
 
-This ensures the user's eye is drawn toward the actions that matter most, rather than presenting all drill-down paths at equal weight.
+### Title and status rules
+
+The title area should include:
+
+* the domain name
+* a small current-state RAG indicator
+* a trend cue that signals the recent direction of change
+
+The RAG indicator reflects **current status only**.
+
+The trend cue reflects recent movement such as:
+
+* worsening
+* unchanged
+* improving
+* recovered
+
+**Recovered** should be used when a domain has turned green since the last review and is still worth surfacing as a meaningful change.
+
+### Top 3 signal rule
+
+The top 3 signals should remain concise and high-value.
+
+A good default pattern is:
+
+* one key problem or state signal
+* one severity or impact signal
+* one change or trend signal
+
+The exact content may vary by domain, but the pattern should remain compact and easy to scan.
+
+### Expanded state
+
+When expanded, a card may reveal:
+
+* 2–4 additional diagnostic details
+* 1–3 relevant drill-down links
+* a short high-level statement of what needs updating
+* optional owner, date, or changed-since-last-review context where useful
+
+Expanded content must remain high-level enough for an overview page. It must not become a full detailed workspace.
+
+### Expand / collapse behavior
+
+Diagnostic cards must support explicit expand / collapse interaction.
+
+The interaction contract is:
+
+* cards are collapsed by default
+* users can expand a card to reveal more relevant diagnostic information
+* users can collapse the card again after review
+* the page must still be useful without expanding any card
+* expanded state should help the user decide where to go next, not complete all work inline
+
+### Drill-down link rule
+
+Expanded cards may expose multiple relevant destinations when needed.
+
+For example, a schedule card may link to:
+
+* schedule detail
+* milestone detail
+* dependency detail
+
+Use links for navigation destinations and keep action hierarchy clear.
+
+### What needs updating rule
+
+When a card indicates what needs updating, it should do so at a high level.
+
+For example:
+
+* baseline dates need review
+* dependency ETA needs confirmation
+* forecast cost needs refresh
+
+The overview should identify the update need, but the actual update work happens in the destination area rather than inside the card.
 
 ## Section ordering rule
 
-The V1 page must follow this section order:
+The active page must follow this section order:
 
-1. Executive Status Summary
-2. Main Health Domains
-3. Supporting Drift Domains
-4. AI Support Layer
-5. Next Steps and Drill-Down Actions
+1. Executive Summary
+2. AI Insight Layer (only when AI is on)
+3. Diagnostic + Drill-down
 
-This order is locked for V1. It reflects the intended scan flow from immediate health signal through to action. It must not be changed without an explicit approved revision.
+This order is the current stable screen model.
 
 ## Interaction requirements
 
 The screen must support the following interaction behavior:
 
 * fast scan without mandatory interaction
-* clear clickable or navigable drill-down paths into detailed areas
 * stable section boundaries so users can predict where information lives
 * optional AI-assisted interpretation when available
-* progression from awareness to action without requiring the AI layer
-
-## AI behavior in the screen
-
-The page must support the following AI maturity states:
-
-* **AI Off**
-  No AI-generated content is shown on the page. The user relies entirely on direct project facts and status signals.
-
-* **Level 1 — Descriptive**
-  AI summarizes the current project state in plain language. It describes what is visible without interpretation beyond the data.
-
-* **Level 2 — Diagnostic**
-  AI explains why something may be off track by connecting signals across cost, schedule, scope, resources, risks, issues, dependencies, and changes.
-
-* **Level 3 — Predictive**
-  AI highlights likely future drift, likely next slippages, and emerging risks based on patterns and recent signals.
-
-* **Level 4 — Agentic**
-  AI suggests the next best action and may help prepare follow-up steps, communications, or interventions, while keeping the human in control.
-
-### AI layer rules for this screen
-
-* The AI Support Layer sits after the Supporting Drift Domains section in the page order.
-* AI must remain visually and functionally subordinate to core project facts at all maturity levels.
-* The page must remain fully usable with AI Off. AI should enhance judgment, not replace the baseline experience.
-* AI must not become the sole path to understanding project health at any level.
+* in-place AI maturity switching when AI is enabled
+* expandable/collapsible diagnostic cards
+* clear clickable or navigable drill-down paths into detailed areas
+* progression from awareness to action without requiring AI
+* visibility control for hidden healthy domains through **Show all domains**
 
 ## Layout expectations
 
@@ -256,50 +449,96 @@ The layout should:
 * use cards, panels, sections, or similar structured containers where helpful
 * avoid dense walls of text
 * preserve a calm, controlled visual rhythm
+* keep AI visible but clearly subordinate to factual project information
 
-## Locked constraints for V1
+## Locked constraints for the current model
 
-Unless explicitly changed by a later approved revision, AI must preserve these constraints in the initial generated version:
+Unless explicitly changed by a later approved revision, AI must preserve these constraints in generated versions:
 
 * the page remains a high-level overview, not a detailed workspace
-* the main health domains remain primary
-* the supporting drift domains remain visible and easy to access
-* the AI layer remains secondary to core project facts
+* Executive Summary remains the top factual assessment layer
+* the AI layer appears only when AI is on and sits below the Executive Summary
+* AI content remains contained to the AI layer only
+* the Diagnostic + Drill-down section remains unified rather than split into separate main-health and supporting-drift sections
+* the four core domains remain always visible
+* conditional drift domains remain filtered by issue or recovery state unless the user reveals all domains
+* the page must include a clear path from signal to drill-down destination
 * the design must align to the host product shell and existing product patterns
-* the page must include a clear path from signal to drill-down action
 
 ## What AI must not do
 
-When generating the first version, AI must not:
+When generating or revising this screen, AI must not:
 
 * redesign the product shell
-* omit one of the core required information domains without an explicit reason
+* omit one of the four core domains without an explicit approved reason
+* reintroduce a separate standalone Next Steps section unless explicitly requested
+* place AI-generated content inside domain cards
 * replace direct factual visibility with AI-only summaries
+* show all AI maturity levels at once in the same content area
 * create a visually noisy or overly promotional AI experience
 * introduce an entirely new page model that feels disconnected from the existing product
-* turn the page into a deep operational screen with excessive detail
+* turn the page into a deep operational screen with excessive inline detail
+
+## Demo and prototype scenario note
+
+For testing and prototype comparison, the screen should work for at least these conditions:
+
+### Scenario A — Healthy / stable project
+
+The page should support a project that is broadly on track.
+
+Expected behavior:
+
+* Executive Summary confirms stability
+* no immediate action is required
+* core domains may still show mild watch-outs without creating false urgency
+* AI should reinforce confidence without manufacturing drama
+
+### Scenario B — At-risk project
+
+The page should support a project with meaningful issues.
+
+Expected behavior:
+
+* Executive Summary shows clear concern and immediate action signal where needed
+* at least one core domain is off track
+* one or more drift domains explain or contribute to the issue
+* AI should clarify the issue and help prioritize attention
+
+### Scenario C — Recovered / improving project
+
+The page may also support a project where a previously problematic domain has turned green.
+
+Expected behavior:
+
+* a recovered domain may still be surfaced in the Diagnostic section
+* the trend cue should indicate recovery or improvement
+* the page should help the user distinguish between stable healthy state and newly recovered state
+
+These scenarios are included to support prototype evaluation and cross-tool testing. They do not change the structural rules above.
 
 ## Intentional open items for later refinement
 
-The following may still be refined after the first controlled version is created:
+The following may still be refined later without changing the core screen model:
 
-* exact card pattern and grouping model
-* exact visual treatment of the executive summary
-* exact CTA pattern for next-step actions
-* detailed content density within each section
-* exact non-AI treatment of the AI support area (for example, hidden vs minimal enable treatment)
-* exact visual pattern for Level 3 predictive signals within cards
+* exact visual treatment of the Executive Summary
+* exact visual treatment of the AI level control
+* exact card styling and density
+* exact iconography for trend cues and domain links
+* exact motion or transition behavior for expand/collapse and AI switching
+* detailed threshold definitions for each domain signal
+* trust and transparency requirements for AI explanations
 
-These can evolve later, but the core structure and hierarchy in this file should remain stable unless explicitly changed.
+## Success criteria for review
 
-## Success criteria for V1 review
-
-The first version is successful if a reviewer can confirm that:
+The current screen contract is successful if a reviewer can confirm that:
 
 * the screen feels native to the existing product
-* the first 5-second questions are answerable quickly
-* the main health domains are easy to scan
-* the drift domains are visible and useful
-* AI support is helpful but not visually dominant
-* the page supports judgment first and drill-down second
+* the first 30-second questions are answerable quickly
+* the Executive Summary provides a clear immediate-action signal
+* AI appears only when enabled and updates correctly by maturity level
+* diagnostic cards are easy to scan in collapsed mode
+* expanded cards provide useful additional context without becoming dense
+* the page supports both healthy and at-risk scenarios
 * the page feels structured, calm, and trustworthy
+* the page supports judgment first and drill-down second
