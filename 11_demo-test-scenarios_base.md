@@ -43,6 +43,25 @@ These scenarios should be supported by both:
 - baseline non-AI screen behavior
 - AI-enabled screen behavior across maturity levels
 
+## Demo-state application rule
+
+Healthy, At-risk, and Recovered scenarios are alternate sample states for the same design.
+
+They are used to test whether one stable screen structure can communicate different project conditions clearly.
+
+Changing the demo scenario should update:
+- executive summary content
+- visible domain status
+- trend cues
+- action-needed signals
+- AI content, if AI is enabled
+
+Changing the demo scenario should not:
+- introduce a different page structure
+- move sections to different locations
+- merge or split the screen model
+- change the role of the AI controls
+
 ---
 
 ## Scenario 1 — Healthy / On Track
