@@ -555,6 +555,7 @@ Unless explicitly changed by a later approved revision, AI must preserve these c
 * conditional drift domains remain filtered by issue or recovery state unless the user reveals all domains
 * the page must include a clear path from signal to drill-down destination
 * the design must align to the host product shell and existing product patterns
+* the Project Overview is exposed as a dedicated **Overview** tab in the top project tab row and should be shown as the active tab for this screen
 
 ## What AI must not do
 
@@ -569,6 +570,8 @@ When generating or revising this screen, AI must not:
 * create a visually noisy or overly promotional AI experience
 * introduce an entirely new page model that feels disconnected from the existing product
 * turn the page into a deep operational screen with excessive inline detail
+* treat the Project Overview as part of the global left navigation
+* silently place the Project Overview inside the existing Details tab unless explicitly requested by a later approved revision
 
 ## Demo and prototype scenario note
 
