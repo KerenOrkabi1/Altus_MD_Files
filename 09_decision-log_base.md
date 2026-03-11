@@ -837,6 +837,7 @@ DL-010, DL-011
 
 The first 3 bullets represent what is happening now.  
 The additional 2 bullets represent why the condition exists or what is constraining resolution.
+
 ---
 
 ### ID
