@@ -578,7 +578,7 @@ The cards must support fast scan first, then progressive reveal, while staying c
 
 ### Status
 
-Accepted
+Replaced
 
 ### Supersedes
 
@@ -586,15 +586,14 @@ None
 
 ### Must remain true
 
-* each diagnostic card shows a title
-* each title includes a small RAG color status cue for current domain state
-* each card includes a trend cue beside the title
-* each card shows the top three most relevant signals in collapsed state
-* cards should support a consistent expand/collapse pattern
+* this entry remains part of history only
+* future generation should not use this older compact card contract as the active version
+* the active diagnostic card contract is defined by DL-015
 
 ### Notes / validation
 
-Trend states may include worsening, unchanged, improving, and recovered.
+Replaced by DL-015 after refinement of the diagnostic card structure.  
+The earlier rule established the base compact card model, but the newer decision adds the visible Needs updating section in collapsed state and defines the expanded-state content more precisely.
 
 ---
 
@@ -626,7 +625,7 @@ The overview must remain high-level by default while still allowing targeted inv
 
 ### Status
 
-Accepted
+Replaced
 
 ### Supersedes
 
@@ -634,15 +633,14 @@ None
 
 ### Must remain true
 
-* cards are collapsed by default
-* expanded state reveals approximately two to four extra diagnostic details
-* expanded state may show one to three drill-down destinations where the user can investigate or fix the issue
-* expanded state may indicate what needs updating at a high level
-* expansion must not expose full operational detail inline
+* this entry remains part of history only
+* future generation should not use this older expanded-card rule as the active version
+* the active expanded-card behavior is defined by DL-015
 
 ### Notes / validation
 
-Possible destinations may include multiple targets such as schedule view and milestone view.
+Replaced by DL-015 after refinement of the expanded-card contract.  
+The earlier rule allowed a looser expanded-state structure, while the newer decision fixes the placement of the additional 2 factual bullets and keeps the contract more reusable across initiatives.
 
 ---
 
@@ -784,3 +782,111 @@ None
 ### Notes / validation
 
 Aligned to the active screen spec V3.
+
+---
+
+### ID
+
+DL-015
+
+### Date
+
+2026-03-11
+
+### Screen / Scope
+
+Project Overview / Diagnostic card contract
+
+### Decision
+
+Refine the standard diagnostic card contract so collapsed cards show title, RAG status, trend, exactly 3 factual key bullets, and a visible Needs updating section. Expanded cards retain collapsed content and add exactly 2 factual supporting bullets plus drill-down links.
+
+### Reason
+
+The earlier compact card rule established the basic scan pattern, but the latest refinement clarified that users should see both the top signals and the factual update need before expanding. The expanded state should then add cause/constraint context and navigation without changing the core card structure.
+
+### Impact
+
+* strengthens scanability in collapsed state
+* makes update needs visible earlier
+* standardizes expanded-card content more precisely across tools
+* improves reuse of the same card contract across initiatives
+
+### Status
+
+Accepted
+
+### Supersedes
+
+DL-010, DL-011
+
+### Must remain true
+
+* each diagnostic card shows the domain title
+* each card includes a small current-state RAG cue
+* each card includes a trend cue
+* collapsed state shows exactly 3 factual key bullets
+* collapsed state shows a visible Needs updating section
+* expanded state retains all collapsed content
+* expanded state adds exactly 2 factual supporting bullets between the first 3 bullets and Needs updating
+* expanded state may show one to three drill-down links
+* cards remain collapsed by default
+* the page must remain useful without expanding any card
+
+### Notes / validation
+
+The first 3 bullets represent what is happening now.  
+The additional 2 bullets represent why the condition exists or what is constraining resolution.
+
+---
+
+### ID
+
+DL-016
+
+### Date
+
+2026-03-11
+
+### Screen / Scope
+
+Project Overview / Diagnostic card trust and source rule
+
+### Decision
+
+Keep all Diagnostic + Drill-down card content factual and derived from available project data. AI-generated interpretation, diagnosis, prediction, and recommendation must remain outside the cards and belong only in the AI Insight Layer.
+
+### Reason
+
+The project overview must preserve trust in baseline facts. Users need to distinguish clearly between direct project signals and AI-generated reasoning.
+
+### Impact
+
+* strengthens trust and transparency
+* preserves the baseline non-AI diagnostic layer
+* reduces ambiguity between factual evidence and AI insight
+* improves consistency across initiatives using the same card pattern
+
+### Status
+
+Accepted
+
+### Supersedes
+
+None
+
+### Must remain true
+
+* diagnostic card content is based on available project data
+* top 3 bullets are factual current-state signals
+* additional 2 bullets are factual cause, blocker, dependency, or constraint signals
+* Needs updating is a factual review, refresh, confirmation, correction, or formalization need
+* cards must not contain AI-generated interpretation
+* cards must not contain AI-generated diagnosis
+* cards must not contain AI-generated prediction
+* cards must not contain AI-generated recommendation
+* AI-generated reasoning belongs only in the AI Insight Layer
+
+### Notes / validation
+
+This decision protects the separation between baseline project facts and optional AI support.

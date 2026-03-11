@@ -64,6 +64,47 @@ If a custom pattern proves useful more than once, document it in the shared `des
 - Use progressive disclosure when more detail is needed.
 - High-level views should surface critical information first and detailed information second.
 
+## Reusable diagnostic card pattern
+Use a consistent diagnostic card structure across initiatives when surfacing domain health, status detail, or drill-down summary, unless a screen spec explicitly overrides it.
+
+### Card structure
+Collapsed state should show:
+- title
+- status indicator (for example RAG)
+- trend
+- exactly 3 key bullets
+- a visible “Needs updating” section
+
+Expanded state should:
+- retain all collapsed content
+- add exactly 2 additional bullets between the first 3 bullets and the “Needs updating” section
+- add links or drill-down references
+
+### Content model
+The first 3 bullets should represent **what is happening now**. These should prioritize:
+1. current state or problem
+2. impact, severity, or exposure
+3. recent movement, change, or trend
+
+The additional 2 bullets should represent **why the condition exists or what is constraining resolution**. These should prioritize:
+1. key cause, dependency, blocker, or driver
+2. pending condition, unresolved constraint, or follow-up context
+
+The “Needs updating” section should represent a factual update, review, confirmation, correction, or formalization needed in the underlying project data, record, or control process.
+
+### Trust and source rule
+Diagnostic card content must remain factual and based on available project or product data.
+
+Diagnostic cards must not contain:
+- AI-generated interpretation
+- AI-generated prediction
+- AI-generated recommendation
+
+AI-generated reasoning belongs only in a clearly separated AI layer or equivalent AI-designated area.
+
+### Reuse rule
+When the same domain-health card problem appears across multiple initiatives, reuse this structure by default instead of inventing a new card pattern.
+
 ## Content behavior
 - Use clear, direct labels.
 - Prefer consistent terminology across products and initiatives.
