@@ -7,6 +7,19 @@ It is intended to reduce design drift during iteration by making each requested 
 
 This file should be used whenever AI is asked to revise an existing screen, prototype, or page concept.
 
+## How to use this file
+This file is a reusable base.
+
+Do not replace this file with a project-specific request unless you intentionally want to lose the generic template.
+
+For each actual revision:
+- create a new change request instance using this template
+- link it to the relevant screen and current version
+- review the result against the acceptance criteria
+- if accepted and considered stable, promote the outcome into the decision log and/or the relevant core file
+
+This file should remain generic unless the standard itself needs improvement.
+
 ## Role in the file set
 This file works after an initial version has been created.
 
@@ -31,6 +44,8 @@ All revisions should be treated as non-destructive by default.
 That means the AI should assume the current design remains valid unless this file explicitly authorizes a structural change.
 
 If a requested change is unclear, AI should preserve the current structure rather than invent a new one.
+
+If the request does not explicitly authorize a change, AI should preserve the current version rather than reinterpret it.
 
 ## Default revision policy
 Unless this file explicitly says otherwise, AI must:
@@ -87,7 +102,20 @@ Include:
 - request name
 - related screen
 - version being changed
+- current source being revised (for example: Claude React preview v3, Figma draft v2, current coded prototype, or image review set)
 - date or sequence number if useful
+
+### 1A. Source-of-truth files
+Include the specific files that this request depends on.
+
+Typical examples:
+- masterplan
+- user journey
+- design guidelines
+- rules
+- product shell
+- screen spec
+- decision log
 
 ### 2. Revision mode
 Declare one of:
@@ -178,6 +206,17 @@ This may include:
 - what triggered the revision
 - what user feedback or review concern led to the request
 
+### 11. Promotion decision after review
+After the revision is reviewed, state one of:
+- no promotion needed
+- promote to decision log
+- promote to screen spec
+- promote to design guidelines
+- promote to rules
+- promote to multiple files as specified
+
+This keeps temporary revision logic separate from permanent source-of-truth updates.
+
 ## Change request template
 Use the following structure when creating an actual request.
 
@@ -185,6 +224,11 @@ Use the following structure when creating an actual request.
 - Request name:
 - Related screen:
 - Version being changed:
+- Current source being revised:
+- Sequence or date:
+
+### Source-of-truth files
+- 
 
 ### Revision mode
 - Preserve / Refine / Structural
@@ -212,6 +256,9 @@ Use the following structure when creating an actual request.
 
 ### Notes or rationale
 -
+
+### Promotion decision after review
+- No promotion needed / Decision log / Screen spec / Design guidelines / Rules / Multiple files
 
 ## Guidance for writing strong change requests
 A strong request should:
