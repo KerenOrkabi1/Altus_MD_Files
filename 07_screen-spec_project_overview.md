@@ -363,7 +363,7 @@ That means:
 
 ## Diagnostic card contract
 
-Each visible domain should use a compact card pattern.
+Each visible domain should use the shared diagnostic card pattern from `03_design-guidelines_base.md`, unless this screen explicitly overrides it.
 
 ### Collapsed state
 
@@ -371,9 +371,9 @@ Each collapsed card must show:
 
 * domain title
 * a small RAG status dot beside the title representing the current domain status
-* a trend cue beside or near the title
-* the top 3 signals for that domain
-* an expand affordance
+* a trend cue beside or near the title representing recent movement
+* exactly 3 factual key bullets
+* a visible **Needs updating** section
 
 The collapsed state must support fast scan without requiring expansion.
 
@@ -398,26 +398,53 @@ The trend cue reflects recent movement such as:
 
 ### Top 3 signal rule
 
-The top 3 signals should remain concise and high-value.
+The first 3 bullets should remain concise, high-value, and factual.
+
+They should represent **what is happening now**.
 
 A good default pattern is:
 
-* one key problem or state signal
-* one severity or impact signal
-* one change or trend signal
+* one current state or problem signal
+* one impact, severity, or exposure signal
+* one recent movement, change, or trend signal
 
 The exact content may vary by domain, but the pattern should remain compact and easy to scan.
 
+### Needs updating rule
+
+The **Needs updating** section must remain visible in collapsed state.
+
+It should represent a factual update, review, confirmation, correction, or formalization needed in the underlying project data, record, or control process.
+
+Examples include:
+
+* baseline dates need review
+* dependency ETA needs confirmation
+* forecast cost needs refresh
+
+It is not an AI recommendation and should not be written as speculative advice.
+
 ### Expanded state
 
-When expanded, a card may reveal:
+When expanded, a card should:
 
-* 2–4 additional diagnostic details
-* 1–3 relevant drill-down links
-* a short high-level statement of what needs updating
-* optional owner, date, or changed-since-last-review context where useful
+* retain all collapsed content
+* add exactly 2 additional factual supporting bullets between the first 3 bullets and the **Needs updating** section
+* add 1–3 relevant drill-down links
+* optionally add owner, date, or changed-since-last-review context where useful
 
 Expanded content must remain high-level enough for an overview page. It must not become a full detailed workspace.
+
+### Additional 2 bullet rule
+
+The additional 2 bullets should represent **why the condition exists or what is constraining resolution**.
+
+A good default pattern is:
+
+* one key cause, dependency, blocker, or driver
+* one pending condition, unresolved constraint, or follow-up context
+
+These bullets must remain factual and derived from available project data.
 
 ### Expand / collapse behavior
 
@@ -443,17 +470,26 @@ For example, a schedule card may link to:
 
 Use links for navigation destinations and keep action hierarchy clear.
 
-### What needs updating rule
+### Factual content rule
 
-When a card indicates what needs updating, it should do so at a high level.
+Card content in Diagnostic + Drill-down must remain factual baseline project information derived from available project data.
 
-For example:
+This includes:
 
-* baseline dates need review
-* dependency ETA needs confirmation
-* forecast cost needs refresh
+* current status signals
+* impact or exposure signals
+* recent movement or trend
+* causes, blockers, dependencies, or constraints
+* factual update requirements
 
-The overview should identify the update need, but the actual update work happens in the destination area rather than inside the card.
+Card content must not contain:
+
+* AI-generated interpretation
+* AI-generated diagnosis
+* AI-generated prediction
+* AI-generated recommendation
+
+AI-generated reasoning belongs only in the AI Insight Layer.
 
 ## Section ordering rule
 
