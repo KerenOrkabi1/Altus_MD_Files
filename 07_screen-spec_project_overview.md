@@ -526,6 +526,19 @@ The layout should:
 * preserve a calm, controlled visual rhythm
 * keep AI visible but clearly subordinate to factual project information
 
+### Responsive behavior for this screen
+
+The Project Overview layout should remain readable and aligned as available width decreases.
+
+Responsive behavior should follow these principles:
+
+* the Executive Summary may stack vertically when horizontal space becomes constrained
+* when stacked, the left decision-oriented summary remains first and the forecast block moves below it
+* diagnostic cards should reflow cleanly from 4 columns to fewer columns as needed
+* card headers must preserve clear alignment between title, status, and trend without overlap
+* important summary signals should wrap or stack before truncating critical meaning
+* the layout should preserve scanability and remain visually subordinate to the product shell
+
 ## Locked constraints for the current model
 
 Unless explicitly changed by a later approved revision, AI must preserve these constraints in generated versions:
