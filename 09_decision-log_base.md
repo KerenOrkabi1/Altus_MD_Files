@@ -890,3 +890,53 @@ None
 ### Notes / validation
 
 This decision protects the separation between baseline project facts and optional AI support.
+
+---
+
+### ID
+
+DL-017
+
+### Date
+
+2026-03-11
+
+### Screen / Scope
+
+Project Overview / Shell placement and tab model
+
+### Decision
+
+Expose the Project Overview as a new first tab named **Overview** in the top project tab row for an individual project.
+
+### Reason
+
+The Project Overview is defined as the high-level landing page users see when they open an individual project. The existing shell already includes a project-level tab row pattern, so the cleanest and most consistent placement is a dedicated Overview tab within that tab row rather than reusing the global left navigation or silently overloading the existing Details tab.
+
+### Impact
+
+* removes ambiguity about where the Project Overview lives in the shell
+* keeps the page aligned to the existing Altus project tab-row pattern
+* improves consistency across Claude, Lovable, and future tool runs
+* prevents silent variation between “new tab”, “replace Details”, and “inside Details” interpretations
+
+### Status
+
+Accepted
+
+### Supersedes
+
+None
+
+### Must remain true
+
+* Project Overview appears as a project-level surface in the top product tab row
+* the tab label is **Overview**
+* Overview is the first tab in the project tab order
+* the global left navigation remains unchanged
+* Project Overview does not silently reuse the existing Details tab unless a later decision explicitly replaces this one
+* shell generation should preserve the existing top tab-row structure while showing Overview as the active project tab for this screen
+
+### Notes / validation
+
+Added to remove tab-placement ambiguity during cross-tool generation and refinement.
